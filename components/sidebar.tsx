@@ -37,7 +37,7 @@ const sidebarSections = [
   {
     title: 'EMBEDDED AGENTS',
     items: [
-      { label: 'AI Workflows', href: 'workflows' },
+      { label: 'AI Workflows', href: 'ai-workflows' },
       { label: 'MCP Servers', href: 'mcp-servers' },
     ],
   },
@@ -60,11 +60,16 @@ const sidebarSections = [
   },
 ];
 
+function isLinkActive(pathname: string, href: string) {
+  if (!href) return pathname === '/';
+  return pathname === `/${href}` || pathname.startsWith(`/${href}/`);
+}
+
 export function DesktopSidebar() {
   const [isMaintainOpen, setIsMaintainOpen] = useState(false);
   const [isMoreOpen, setIsMoreOpen] = useState(false);
   const pathname = usePathname();
-  const activeRoute = routes.find((route) => route.href.length > 0 && pathname.includes(route.href)) || routes[0];
+  const activeRoute = routes.find((route) => isLinkActive(pathname, route.href)) || routes[0];
 
   return (
     <div className="hidden relative md:block min-w-[280px] max-w-[280px] h-screen overflow-y-auto w-full bg-primary/5 dark:bg-secondary/30 dark:text-foreground text-muted-foreground border-r-2 border-separate">
@@ -80,7 +85,7 @@ export function DesktopSidebar() {
             key={route.href}
             href={`/${route.href}`}
             className={buttonVariants({
-              variant: activeRoute.href === route.href ? 'sidebarActiveItem' : 'sidebarItem',
+              variant: isLinkActive(pathname, route.href) ? 'sidebarActiveItem' : 'sidebarItem',
             })}
           >
             <route.icon size={20} />
@@ -122,7 +127,7 @@ export function DesktopSidebar() {
                         key={item.href}
                         href={`/${item.href}`}
                         className={buttonVariants({
-                          variant: pathname.includes(item.href) ? 'sidebarActiveItem' : 'sidebarItem',
+                          variant: isLinkActive(pathname, item.href) ? 'sidebarActiveItem' : 'sidebarItem',
                           className: 'w-full',
                         })}
                       >
@@ -141,7 +146,7 @@ export function DesktopSidebar() {
                       key={item.href}
                       href={`/${item.href}`}
                       className={buttonVariants({
-                        variant: pathname.includes(item.href) ? 'sidebarActiveItem' : 'sidebarItem',
+                        variant: isLinkActive(pathname, item.href) ? 'sidebarActiveItem' : 'sidebarItem',
                         className: 'w-full',
                       })}
                     >
@@ -164,7 +169,7 @@ export function MobileSidebar() {
   const [isMoreOpen, setIsMoreOpen] = useState(false);
 
   const pathname = usePathname();
-  const activeRoute = routes.find((route) => route.href.length > 0 && pathname.includes(route.href)) || routes[0];
+  const activeRoute = routes.find((route) => isLinkActive(pathname, route.href)) || routes[0];
 
   return (
     <div className="block border-separate bg-background md:hidden">
@@ -184,7 +189,7 @@ export function MobileSidebar() {
                   key={route.href}
                   href={`/${route.href}`}
                   className={buttonVariants({
-                    variant: activeRoute.href === route.href ? 'sidebarActiveItem' : 'sidebarItem',
+                    variant: isLinkActive(pathname, route.href) ? 'sidebarActiveItem' : 'sidebarItem',
                   })}
                   onClick={() => setIsOpen((prev) => !prev)}
                 >
@@ -227,7 +232,7 @@ export function MobileSidebar() {
                               key={item.href}
                               href={`/${item.href}`}
                               className={buttonVariants({
-                                variant: pathname.includes(item.href) ? 'sidebarActiveItem' : 'sidebarItem',
+                                variant: isLinkActive(pathname, item.href) ? 'sidebarActiveItem' : 'sidebarItem',
                                 className: 'w-full',
                               })}
                               onClick={() => setIsOpen((prev) => !prev)}
@@ -247,7 +252,7 @@ export function MobileSidebar() {
                             key={item.href}
                             href={`/${item.href}`}
                             className={buttonVariants({
-                              variant: pathname.includes(item.href) ? 'sidebarActiveItem' : 'sidebarItem',
+                              variant: isLinkActive(pathname, item.href) ? 'sidebarActiveItem' : 'sidebarItem',
                               className: 'w-full',
                             })}
                             onClick={() => setIsOpen((prev) => !prev)}
