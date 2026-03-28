@@ -45,14 +45,3 @@ FlowScrape's credit-based system allows you to manage workflow executions effici
 
 Our **AI-powered web scraping** feature is currently in beta, offering smart scraping capabilities to navigate complex pages. Join the beta to be among the first to test this groundbreaking tool!
 
-## 🪪 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-## 🌎 View Demo
-
-Live Demo: [https://samrat-flowscrape.vercel.app/](https://samrat-flowscrape.vercel.app)
-
-## 📞 Contact
-
-Your Name - [Samrat Sadhu](https://samrat-sadhu-portfolio.vercel.app/) - ss2414@ece.jgec.ac.in
